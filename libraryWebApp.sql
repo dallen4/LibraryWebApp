@@ -61,8 +61,8 @@ CONSTRAINT MemberStatus_PK PRIMARY KEY (MStatusID ));
 
 CREATE TABLE IF NOT EXISTS Member
 (MembershipID    INT    NOT NULL AUTO_INCREMENT,
-UserName       	VARCHAR(25),
-UserPassword    VARCHAR(255),
+UserName       	VARCHAR(25) NOT NULL,
+UserPassword    VARCHAR(255) NOT NULL,
 MemberAddress   VARCHAR(50),
 MemberCity      VARCHAR(50),
 MemberState   	CHAR(2),
@@ -70,6 +70,7 @@ MemberZipcode   VARCHAR(20),
 PhoneNumber     VARCHAR(10),  
 MStatusID  		NUMERIC(2,0) NOT NULL,
 CONSTRAINT Member_PK PRIMARY KEY (MembershipID ),
+ CONSTRAINT Member_UQ UNIQUE (UserName),
 CONSTRAINT Member_FK2 FOREIGN KEY (MStatusID) REFERENCES MemberStatus (MStatusID));
 
 CREATE TABLE IF NOT EXISTS Borrowes  
@@ -86,7 +87,7 @@ REFERENCES Member (MembershipID ));
 
 
 CREATE TABLE IF NOT EXISTS Adminstrator
-(EmployeeID     NUMERIC(11,0) NOT NULL,
+(EmployeeID     VARCHAR(10), NOT NULL,
 AdminPassword   VARCHAR(255),
 CONSTRAINT Adminstrator_PK PRIMARY KEY (EmployeeID));
 
@@ -136,6 +137,8 @@ INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(190002, '
 
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(0, 'Waiting for approval');
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(1, 'Normal');
-INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(3, 'Fee Upaid');
+INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(3, 'Fee Unpaid');
 
-
+INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016001','LB2016001');
+INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016002','LB2016002');
+INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016003','LB2016003');
