@@ -87,14 +87,14 @@ REFERENCES Member (MembershipID ));
 
 
 CREATE TABLE IF NOT EXISTS Adminstrator
-(EmployeeID     VARCHAR(10), NOT NULL,
+(EmployeeID     VARCHAR(10) NOT NULL,
 AdminPassword   VARCHAR(255),
 CONSTRAINT Adminstrator_PK PRIMARY KEY (EmployeeID));
 
 
 CREATE TABLE IF NOT EXISTS Manage
 (`Operation#`   INT  		   NOT NULL AUTO_INCREMENT,
-EmployeeID     	NUMERIC(11,0)  NOT NULL,
+EmployeeID      VARCHAR(10)  NOT NULL,
 BookID          NUMERIC(11,0)  NOT NULL,
 OperationDate	DATE,
 OperationLog  	VARCHAR(100),
