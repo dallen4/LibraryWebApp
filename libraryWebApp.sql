@@ -48,10 +48,9 @@ CONSTRAINT Supplier_PK PRIMARY KEY (VendorNumber));
 CREATE TABLE IF NOT EXISTS Supplies              
 (VendorNumber     NUMERIC(11,0)   NOT NULL,
 ISBN              CHAR(13)        NOT NULL,
+Quantity          INT,
 CONSTRAINT Supplies_PK PRIMARY KEY (VendorNumber, ISBN  ),
-CONSTRAINT Supplies_FK1 FOREIGN KEY (ISBN) REFERENCES Book(ISBN),
-CONSTRAINT Supplies_FK2 FOREIGN KEY (VendorNumber  ) 
-REFERENCES Supplier (VendorNumber ));
+CONSTRAINT Supplies_FK1 FOREIGN KEY (ISBN) REFERENCES Book(ISBN));
 
 CREATE TABLE IF NOT EXISTS MemberStatus
 (MStatusID        NUMERIC(2,0)  NOT NULL,
@@ -60,7 +59,7 @@ CONSTRAINT MemberStatus_PK PRIMARY KEY (MStatusID ));
 
 
 CREATE TABLE IF NOT EXISTS Member
-(MembershipID    INT    NOT NULL AUTO_INCREMENT,
+(MembershipID    INT NOT NULL AUTO_INCREMENT,
 UserName       	VARCHAR(25) NOT NULL,
 UserPassword    VARCHAR(255) NOT NULL,
 MemberAddress   VARCHAR(50),
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Borrowes
 MembershipID     INT NOT NULL,
 DateBorrowed	 DATE NOT NULL,
 DateReturned	 DATE,
-DueDte	    	 DATE,
+DueDate	    	 DATE,
 Fee              DECIMAL(6,2),
 CONSTRAINT Borrowes_PK PRIMARY KEY (BookID, MembershipID, DateBorrowed),
 CONSTRAINT Borrowes_FK1 FOREIGN KEY (BookID) REFERENCES BookCopy(BookID),
@@ -96,7 +95,7 @@ CREATE TABLE IF NOT EXISTS Manage
 (`Operation#`   INT  		   NOT NULL AUTO_INCREMENT,
 EmployeeID      VARCHAR(10)  NOT NULL,
 BookID          NUMERIC(11,0)  NOT NULL,
-OperationDate	DATE,
+OperationDate	TIMESTAMP,
 OperationLog  	VARCHAR(100),
 CONSTRAINT Manage_PK PRIMARY KEY (`Operation#`),
 CONSTRAINT Manage_FK1 FOREIGN KEY(EmployeeID )
@@ -127,9 +126,26 @@ INSERT INTO BookStatus(`BStatusID`,`BookStatus`) VALUES(1, 'In library');
 INSERT INTO Bookstatus(`BStatusID`,`BookStatus`) VALUES(2, 'Lost');
 INSERT INTO BookStatus(`BStatusID`,`BookStatus`) VALUES(3, 'Under repairing');
 
+INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80811,'The Children¡¯s Book Council','54 West 39th Street, 14th Floor','New York', 'NY', '10018');
+INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80812,'ABC-CLIO','P.O. Box 1911', 'Santa Barbara', 'CA', '93116');
+INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80813,'The Library Store','PO Box 0964','Tremont', 'IL', '61568');
+INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80814,'Brodart Order Center','500 Arch Street','Williamsport', 'PA', '17701');
+
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9781580625579', 15);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9781482317800', 25);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9780544104402', 10);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80812, '9780321884497', 10);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80812, '9781934356920', 15);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780321884497', 8);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780544104402', 6);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780465050659', 18);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9780451419927', 8);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9781503935310', 10);
+INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9780143108061', 5);
+
 INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170001, '9780321884497', 1001, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170002, '9780321884497', 1001, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170003, '9780321884497', 1001, 1);
+INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170002, '9780321884497', 1001, 0);
+INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170003, '9780321884497', 1001, 0);
 INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(180001, '9781503935310', 1002, 1);
 INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(180002, '9781503935310', 1002, 1);
 INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(190001, '9780544104402', 1004, 1);
@@ -142,3 +158,6 @@ INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(3, 'Fee Unpaid');
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016001','LB2016001');
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016002','LB2016002');
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016003','LB2016003');
+
+INSERT INTO manage(`EmployeeID`,`BookID`,`OperationDate`,`OperationLog`) VALUES('LB2016001',170001, CURRENT_TIMESTAMP, 'Added book and set book status as in library');
+INSERT INTO manage(`EmployeeID`,`BookID`,`OperationDate`,`OperationLog`) VALUES('LB2016001',190001, CURRENT_TIMESTAMP, 'Marked book status as Lost'); 
