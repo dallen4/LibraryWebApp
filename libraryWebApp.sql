@@ -105,7 +105,7 @@ REFERENCES BookCopy(BookID));
 
 
 -- Populate tables
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Datebase');
+INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Database');
 INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9781934356920','Seven Databases in Seven Weeks\: A Guide to Modern Databases and the NoSQL Movement','Eric Redmond; Jim Wilson','2012-05-01' ,'Pragmatic Bookshelf', 'Database');
 INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780062413901','How to Use Graphic Design to Sell Things, Explain Things, Make Things Look Better, Make People Laugh, Make People Cry, and (Every Once in a While) Change the World','Michael Bierut','2015-11-01' ,'Harper Design', 'Design');
 INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780465050659','The Design of Everyday Things: Revised and Expanded Edition','Don Norman','2013-11-01' ,'Basic Books', 'Design');
