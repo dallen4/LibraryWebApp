@@ -31,7 +31,7 @@ try
 }
 catch (PDOException $e)
 {
-  $error = 'Error :' . $e->getMessage();
+  $error_message = 'Error :' . $e->getMessage();
   include 'error.html.php';
   exit();
 }
@@ -99,7 +99,7 @@ catch (PDOException $e)
 
 ?>
 <ul>
-<li><a href="index.html">Go back to the homepage</a></li>
+<li><a href="index.php">Go back to the homepage</a></li>
  </ul>
   </body>
 </html>

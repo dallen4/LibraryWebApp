@@ -32,7 +32,7 @@ padding:5px;
   }
   catch (PDOException $e)
   {
-    $error = 'Error checking book: ' . $e->getMessage();
+    $error_message = 'Error checking book: ' . $e->getMessage();
     include 'error.html.php';
     exit();
   }
@@ -61,7 +61,9 @@ padding:5px;
 		<?php endforeach;?>
 		</table>
 
-  
+ <ul>
+<li><a href="index.php">Go back to the homepage</a></li>
+ </ul> 
   </body>
 </html>
 

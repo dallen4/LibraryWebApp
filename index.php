@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     
 
 	<ul>
@@ -18,6 +19,10 @@
 
 	<div id="content">
     <h1>Welcome to our library!</h1>  
+
+	<?php if (!empty($error_message)) 
+	include('error.html.php');
+   ?>
 
 	<div><label>User Type: </label>
 	 <select name="usertype">

@@ -7,6 +7,17 @@
 
 	  setcookie('mycookie',$userlogin);
 
+if(empty($userlogin)){
+	   $error_message = 'Please enter your username!';
+	  }
+      else
+		$error_message = '';
+
+if ($error_message != '') {
+        include('index.php');
+        exit();
+    }
+
 if($usertype == "member")
 
 	$sql = 'SELECT UserPassword FROM member WHERE UserName = :userlogin';

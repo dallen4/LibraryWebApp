@@ -35,6 +35,10 @@ padding:5px;
 		<?php endforeach;?>
 		</table>
 
+<ul>
+<li><a href="index.php">Go back to the homepage</a></li>
+ </ul>
+
 		</body>
 	</html>
 		 

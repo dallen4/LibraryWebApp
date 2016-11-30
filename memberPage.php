@@ -25,7 +25,7 @@ if (isset($_GET['borrow']))
   }
   catch (PDOException $e)
   {
-    $error = 'Error reserving book: ' . $e->getMessage();
+    $error_message = 'Error reserving book: ' . $e->getMessage();
     include 'error.html.php';
     exit();
   }
@@ -62,7 +62,7 @@ $memid = $membershipID[0];     //get the membershipID of the user logins
   }
   catch (PDOException $e)
   {
-    $error = 'Error inserting book: ' . $e->getMessage();
+    $error_message = 'Error inserting book: ' . $e->getMessage();
     include 'error.html.php';
     exit();
   }
@@ -83,7 +83,7 @@ try
 }
 catch (PDOException $e)
 {
-  $error = 'Error fetching departments: ' . $e->getMessage();
+  $error_message = 'Error fetching books: ' . $e->getMessage();
   include 'error.html.php';
   exit();
 }
