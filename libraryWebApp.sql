@@ -1,4 +1,4 @@
--- Check if exists, create & select database
+  -- Check if exists, create & select database
 DROP DATABASE IF EXISTS libraryWebApp;
 CREATE DATABASE libraryWebApp;
 USE libraryWebApp;
