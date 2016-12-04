@@ -16,7 +16,7 @@
    ?>
 
     
-    <form action="processNewUser.php" method="post">
+    <form action="processAddbook.php" method="post">
 
         <div id="data">
 	
@@ -35,9 +35,7 @@
 		  <input type="text" name="BookID" value = "<?php echo $bookid; ?>"/><br /> 
 		  <label>Shelf Number:</label>
 		  <input type="text" name="Shelf Number" value = "<?php echo $shelfnumber; ?>"/><br />  
-          <label>BStatusID:</label>
-		  <input type="text" name="BStatusID" value = "<?php echo $bstatusid; ?>"/><br /> 
-		
+        	
         </div>
 
         <div id="buttons">
