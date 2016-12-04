@@ -103,7 +103,7 @@ if (!empty($error_message))
   exit();
 }
 
-
+/* returning a book*/ 
 if (isset($_GET['return']))
 {
   try
