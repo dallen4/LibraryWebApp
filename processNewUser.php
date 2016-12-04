@@ -58,7 +58,7 @@ if ($error_message != '') {
         exit();
     }
 
-
+/* Signing up a new user with new user inforamtions*/ 
 try
 {
   	$sql = 'INSERT INTO member SET
