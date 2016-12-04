@@ -40,3 +40,4 @@ catch (PDOException $e)
 }
 
 
+include 'listOfAllBooks.php';
