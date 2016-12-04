@@ -44,7 +44,7 @@ padding:5px;
 	<td><?php echo $borrowedlist['MembershipID'];?></td>
 	<td><?php echo $borrowedlist['BookID'];?></td>
 	 <td><?php echo $borrowedlist['ISBN'];?></td>
-	  <td style="width:150x"><?php echo $borrowedlist['title'];?></td>
+	  <td style="width:150x"><?php echo $borrowedlist['Title'];?></td>
 	   <td><?php echo $borrowedlist['Author'];?></td>
 	    
 		 <td><?php echo $borrowedlist['DateBorrowed'];?></td>

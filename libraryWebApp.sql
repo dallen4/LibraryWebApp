@@ -153,7 +153,7 @@ INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(190002, '
 
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(0, 'Waiting for approval');
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(1, 'Normal');
-INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(3, 'Fee Unpaid');
+INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(2, 'Fee Unpaid');
 
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016001','LB2016001');
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016002','LB2016002');
