@@ -1,35 +1,54 @@
-<?php
-include 'db.inc.php';
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>adding a book to the library</title>
+  <link rel="stylesheet" type="text/css" href="main.css"/>  
+   
+</head>
 
-/* adding new books to the library*/
+<body>
+    <div id="content">
+    <h1>Add a book</h1>  
 
-try {
+	<?php if (!empty($error_message)) 
+	include('error.html.php');
+   ?>
+
     
-    $sql = "INSERT INTO book (ISBN, lastname, email)
-    VALUES ('John', 'Doe', 'john@example.com')";
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    echo "New record created successfully";
-    }
-catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
-    }
+    <form action="processNewUser.php" method="post">
 
-$conn = null;
-?>
+        <div id="data">
+	
+		<label>ISBN:</label>
+		<input type="text" name="username" value = "<?php echo $ISBN; ?>"/> <br />  
+        
+		<label>Book tilte:</label>
+		  <input type="text" name="book title" value = "<?php echo $booktitle; ?>"/><br />   
+		<label>Author:</label>
+		  <input type="text" name="Author" value = "<?php echo $author; ?>"/><br />  
+		<label>Published Date:</label>
+		  <input type="text" name="Published Date" value = "<?php echo $publisheddate; ?>"/><br /> 
+		 <label>Keywords:</label>
+		  <input type="text" name="keywords" value = "<?php echo $keywords; ?>"/><br /> 
+         <label>BookID:</label>
+		  <input type="text" name="BookID" value = "<?php echo $bookid; ?>"/><br /> 
+		  <label>Shelf Number:</label>
+		  <input type="text" name="Shelf Number" value = "<?php echo $shelfnumber; ?>"/><br />  
+          <label>BStatusID:</label>
+		  <input type="text" name="BStatusID" value = "<?php echo $bstatusid; ?>"/><br /> 
+		
+        </div>
 
+        <div id="buttons">
+		
+            <input type="submit" value="Add a book!"></div>
+            
+        </div>
 
-
-
-echo "WElcome to adminPage!$username"
-?>
-
-$username = $_COOKIE['mycookie'];
-
-/* update the status of a member from pending to approved*/ 
-/* i think we need to add a new coloumn in member table where this coloumn shows date where the member signed with us and approve the member after one day of joining*/ 
-
-$sql = 'UPDATE member SET MStatusID=1 WHERE BookID = :bookid';
+    </form>
+    </div>
+</body>
+</html>
 
 
