@@ -23,7 +23,7 @@ $MStatusID = 0;
 
 try
 {
-
+//select usernames from the database from member table 
  $sql = 'SELECT UserName FROM member WHERE UserName = :username';
     $result = $pdo->prepare($sql);
     $result->bindValue(':username', $username);
