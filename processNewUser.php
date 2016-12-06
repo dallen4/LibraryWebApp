@@ -8,7 +8,7 @@
   
 <?php
 include 'db.inc.php'; 
-
+//The values which are entered by the user// 
 $username = $_POST['username'];
 $password = $_POST['password'];
 $passwordhash = password_hash("$password",PASSWORD_DEFAULT);
