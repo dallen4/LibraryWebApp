@@ -7,6 +7,7 @@ echo "Welcome, $username";
 
 if (isset($_GET['checkbooks']))
 {
+ //the line below will include a table that has all of the books that a member can borrows 
   include 'checklist.html.php';
   exit();
 }
