@@ -12,7 +12,8 @@ if (isset($_GET['checkbooks']))
   exit();
 }
 
-//when a member borrows a book, the system first modifies booksatus into 'borrowed' and then inserts a record into borrows table, here we need to use transaction
+//when a member borrows a book, the system first modifies booksatus into 'borrowed' and then inserts a record into borrows table, 
+//here we need to use transaction
 
 if (isset($_GET['borrow']))
 {
