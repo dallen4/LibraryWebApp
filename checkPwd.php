@@ -59,8 +59,10 @@ $UserPassword[] = $row['AdminPassword'];
 	
 	 else if (password_verify($userpwd,$UserPassword[0])){
 		  echo "Successful login!".$userlogin;	
-		  if($usertype == "member")
+		//if the user is member the ''header'' will direct it to member.php page
+		 if($usertype == "member")
            header('Location: memberPage.php');
+		 //if the user type is administrator then it will be redirected to adminpage.php
           elseif($usertype == "administrator")
           
 		  header('Location: adminPage.php');
