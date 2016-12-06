@@ -12,6 +12,8 @@
     
 
 	<ul>
+		//include new user signin as a link//
+		
 <li><a href="newUser.php">Not a member? Click here to sign up!</a></li>
  </ul>
     
