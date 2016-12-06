@@ -52,7 +52,8 @@ $UserPassword[] = $row['AdminPassword'];
 
     if ($userpwd == $UserPassword[0]){
 		  echo "Your password is unprotected, please change your password!";	
-		  
+	else if ($userpwd<==3)
+		echo "Your pasword is too short"
          include 'adminResetPwd.php';
 	  }
 
