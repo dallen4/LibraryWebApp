@@ -59,7 +59,7 @@ $UserPassword[] = $row['AdminPassword'];
 	
 	 else if (password_verify($userpwd,$UserPassword[0])){
 		  echo "Successful login!".$userlogin;	
-	 }
+	
 		 if($usertype == "member")
            header('Location: memberPage.php');
 		 
