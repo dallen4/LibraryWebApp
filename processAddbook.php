@@ -16,13 +16,13 @@ $publisheddate = $_POST['publisheddate'];
 $keywords = $_POST['keywords'];
 $bookid = $_POST['bookid'];
 $shelfnumber = $_POST['shelfnumber'];
-$BStatusID = 0;
+$BStatusID = 1;
 try
 {
 //select ISBN from the database from Book table 
  $sql = 'SELECT ISBN FROM book WHERE ISBN = :isbn';
     $result = $pdo->prepare($sql);
-    $result->bindValue(':username', $username);
+    $result->bindValue(':isbn', $isbn);
     $result->execute();
 }
 catch (PDOException $e)
@@ -32,14 +32,14 @@ catch (PDOException $e)
   exit();
 }
 while($row = $result->fetch()){
-         $uname[] = $row['UserName'];
+         $bisbn[] = $row['ISBN'];
 }
-if(empty($username)){
+if(empty($isbn)){
 	   $error_message = 'Please enter the ISBN !';
 	   
 	}
-elseif($username == $uname[0]){
-        $error_message = 'Sorry, this username has been taken, please try another one';
+elseif($isbn == $bisbn[0]){
+        $error_message = 'Sorry, this ISBN has been taken, please try another one';
 }
 else
 		$error_message = '';
@@ -51,16 +51,17 @@ if ($error_message != '') {
 try
 {
   	$sql = 'INSERT INTO book, bookcopy SET
-        UserName = :uname,
-        UserPassword = :pwdhash,
-        MemberAddress = :maddress,
-        MemberCity = :mcity,
-		MemberState = :mstate,
-		MemberZipcode = :mzipcode,
-		PhoneNumber = :pnum,
-		MStatusID  = :mstatus';
+       ISBN = :bisbn,
+        Title = :title,
+        Author = :author,
+        PublishedDate = :publisheddate,
+		Publisher = :publisher,
+		Keywords = :keywords,
+		BookID = :bookid,
+		ShelfNumber  = :shelfnumber
+		BStatusID = :bstatusid, ;
     $s = $pdo->prepare($sql);
-    $s->bindValue(':uname', $username);
+    $s->bindValue(':isbn', $isbn);
     $s->bindValue(':pwdhash', $passwordhash);
     $s->bindValue(':maddress', $address);
     $s->bindValue(':mcity', $city);
@@ -86,25 +87,3 @@ catch (PDOException $e)
   </body>
 </html>
 
-
-<label>ISBN:</label>
-		<input type="text" name="username" value = "<?php echo $ISBN; ?>"/> <br />  
-        
-		<label>Book tilte:</label>
-		  <input type="text" name="book title" value = "<?php echo $booktitle; ?>"/><br />   
-		<label>Author:</label>
-		  <input type="text" name="Author" value = "<?php echo $author; ?>"/><br />  
-		<label>Published Date:</label>
-		  <input type="text" name="Published Date" value = "<?php echo $publisheddate; ?>"/><br /> 
-		 <label>Keywords:</label>
-		  <input type="text" name="keywords" value = "<?php echo $keywords; ?>"/><br /> 
-         <label>BookID:</label>
-		  <input type="text" name="BookID" value = "<?php echo $bookid; ?>"/><br /> 
-		  <label>Shelf Number:</label>
-		  <input type="text" name="Shelf Number" value = "<?php echo $shelfnumber; ?>"/><br />  
-        	
-        </div>
-
-        <div id="buttons">
-		
-            <input type="submit" value="Add a book!"></div>
