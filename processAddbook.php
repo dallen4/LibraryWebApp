@@ -8,20 +8,19 @@
   
 <?php
 include 'db.inc.php'; 
-//The values which are entered by the user// 
-$username = $_POST['username'];
-$password = $_POST['password'];
-$passwordhash = password_hash("$password",PASSWORD_DEFAULT);
-$address = $_POST['address'];
-$city = $_POST['city'];
-$state = $_POST['state'];
-$zipcode = $_POST['zipcode'];
-$phonenumber = $_POST['phonenumber'];
-$MStatusID = 0;
+//The values which are entered by the administrator to add a book// 
+$isbn = $_POST['ISBN'];
+$booktitle = $_POST['book title'];
+$author = $_POST['author'];
+$publisheddate = $_POST['publisheddate'];
+$keywords = $_POST['keywords'];
+$bookid = $_POST['bookid'];
+$shelfnumber = $_POST['shelfnumber'];
+$BStatusID = 0;
 try
 {
-//select usernames from the database from member table 
- $sql = 'SELECT UserName FROM member WHERE UserName = :username';
+//select ISBN from the database from Book table 
+ $sql = 'SELECT ISBN FROM book WHERE ISBN = :isbn';
     $result = $pdo->prepare($sql);
     $result->bindValue(':username', $username);
     $result->execute();
@@ -36,7 +35,7 @@ while($row = $result->fetch()){
          $uname[] = $row['UserName'];
 }
 if(empty($username)){
-	   $error_message = 'Please enter your username!';
+	   $error_message = 'Please enter the ISBN !';
 	   
 	}
 elseif($username == $uname[0]){
@@ -51,7 +50,7 @@ if ($error_message != '') {
 /* Signing up a new user with new user inforamtions*/ 
 try
 {
-  	$sql = 'INSERT INTO member SET
+  	$sql = 'INSERT INTO book, bookcopy SET
         UserName = :uname,
         UserPassword = :pwdhash,
         MemberAddress = :maddress,
@@ -71,7 +70,7 @@ try
 	$s->bindValue(':mstatus', $MStatusID);  
     
     $s->execute();
-  echo "Sign Up successfully!! $username! ";
+  echo "Book added!";
   echo '<br/>';
 }
 catch (PDOException $e)
@@ -86,3 +85,26 @@ catch (PDOException $e)
  </ul>
   </body>
 </html>
+
+
+<label>ISBN:</label>
+		<input type="text" name="username" value = "<?php echo $ISBN; ?>"/> <br />  
+        
+		<label>Book tilte:</label>
+		  <input type="text" name="book title" value = "<?php echo $booktitle; ?>"/><br />   
+		<label>Author:</label>
+		  <input type="text" name="Author" value = "<?php echo $author; ?>"/><br />  
+		<label>Published Date:</label>
+		  <input type="text" name="Published Date" value = "<?php echo $publisheddate; ?>"/><br /> 
+		 <label>Keywords:</label>
+		  <input type="text" name="keywords" value = "<?php echo $keywords; ?>"/><br /> 
+         <label>BookID:</label>
+		  <input type="text" name="BookID" value = "<?php echo $bookid; ?>"/><br /> 
+		  <label>Shelf Number:</label>
+		  <input type="text" name="Shelf Number" value = "<?php echo $shelfnumber; ?>"/><br />  
+        	
+        </div>
+
+        <div id="buttons">
+		
+            <input type="submit" value="Add a book!"></div>
