@@ -131,7 +131,7 @@ if (isset($_GET['return']))
 
 try
 {
-
+///Below is the query which will show the table of the books who the member can borrow 
 	$sql =  'SELECT BookID,bookcopy.ISBN,title,Author,PublishedDate,KeyWords,ShelfNumber,bookstatus.BookStatus 
 	         FROM bookcopy,book,bookstatus 
 			 WHERE book.ISBN=bookcopy.ISBN AND bookcopy.BStatusID=bookstatus.BStatusID AND bookcopy.BStatusID =1';
