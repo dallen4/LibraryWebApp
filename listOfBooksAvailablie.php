@@ -6,7 +6,7 @@
 table,th,td
 {
 border:1px solid black;
-padding:5px;
+
 }
 </style>
 </head>
@@ -34,11 +34,9 @@ padding:5px;
 		</tr>
 		<?php endforeach;?>
 		</table>
-
 <ul>
 <li><a href="index.php">Go back to the homepage</a></li>
  </ul>
-
 		</body>
 	</html>
 		 

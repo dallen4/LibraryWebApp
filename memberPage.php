@@ -7,13 +7,11 @@ echo "Welcome, $username";
 
 if (isset($_GET['checkbooks']))
 {
- //the line below will include a link to the books you borrowed 
   include 'checklist.html.php';
   exit();
 }
 
-//when a member borrows a book, the system first modifies booksatus into 'borrowed' and then inserts a record into borrows table, 
-//here we need to use transaction
+//when a member borrows a book, the system first modifies booksatus into 'borrowed' and then inserts a record into borrows table, here we need to use transaction
 
 if (isset($_GET['borrow']))
 {
@@ -48,13 +46,15 @@ $memStatusID = $memberStarusID[0];     ////get the memberStarusID of the user lo
 
 $bookStatusID = $bStatusID[0];
 
-//check if member 
+//check if the member is in a normal starus
 if($memStatusID == '0')
     $error_message = "Sorry, your membership is waiting for approval by the administrator, you couldn't borrow books right now.";
 
+//check if the member has fee unpaid
 elseif($memStatusID == '2')
 	$error_message = "Sorry, you have fee unpaid, you couldn't borrow books right now.";
 
+//check if the book is available
 elseif($bookStatusID == '0')
 	$error_message = "Sorry, this book is borrowed by other member, please try another one";
 
@@ -105,7 +105,12 @@ if (!empty($error_message))
   exit();
 }
 
-/* returning a book*/ 
+
+/*Returning a book
+  Here we use a trigger:When a member returns a book, update the bookstatus from "borrowed" into "in library"
+  This action triggers an updating of 'returndate' in borrowes table and calculate fee if returneddate is late than duedate
+*/ 
+
 if (isset($_GET['return']))
 {
   try
@@ -114,11 +119,6 @@ if (isset($_GET['return']))
     $s = $pdo->prepare($sql);
     $s->bindValue(':bookid', $_POST['bookid']);
     $s->execute();
-
-	$sql1 = 'UPDATE borrowes SET DateReturned = CURRENT_DATE WHERE BookID = :bookid';
-    $s1 = $pdo->prepare($sql1);
-    $s1->bindValue(':bookid', $_POST['bookid']);
-    $s1->execute();
 
 }
   catch (PDOException $e)
@@ -131,11 +131,12 @@ if (isset($_GET['return']))
 
 try
 {
-///Below is the query which will show the table of the books who the member can borrow 
+
 	$sql =  'SELECT BookID,bookcopy.ISBN,title,Author,PublishedDate,KeyWords,ShelfNumber,bookstatus.BookStatus 
 	         FROM bookcopy,book,bookstatus 
 			 WHERE book.ISBN=bookcopy.ISBN AND bookcopy.BStatusID=bookstatus.BStatusID AND bookcopy.BStatusID =1';
-   $result = $pdo->query($sql);
+ 
+  $result = $pdo->query($sql);
 }
 catch (PDOException $e)
 {
@@ -143,8 +144,9 @@ catch (PDOException $e)
   include 'error.html.php';
   exit();
 }
-//This line below show in a table the books that are available to be borrowed//
+
 include 'listOfBooksAvailablie.php';
+
 
 
 

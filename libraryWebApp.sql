@@ -103,6 +103,15 @@ REFERENCES Adminstrator (EmployeeID),
 CONSTRAINT Manage_FK2 FOREIGN KEY(BookID)
 REFERENCES BookCopy(BookID));
 
+-- Create trigger
+DELIMITER **
+CREATE TRIGGER tri_returndate
+AFTER UPDATE ON bookcopy
+FOR EACH ROW BEGIN
+UPDATE borrowes SET `DateReturned`= CURRENT_DATE WHERE `BookID`= OLD.bookid;
+END**
+DELIMITER ;
+
 
 -- Populate tables
 INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Database');

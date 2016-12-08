@@ -22,13 +22,22 @@ padding:5px;
        $username = $_COOKIE['mycookie'];
  try
   {
-	$sql = 'SELECT borrowes.MembershipID,bookcopy.BookID,bookcopy.ISBN,Title,Author,DateBorrowed,DateReturned,DueDate,Fee 
+   $q = 'SELECT borrowes.MembershipID,bookcopy.BookID,bookcopy.ISBN,Title,Author,DateBorrowed,DateReturned,DueDate,Fee 
 	        FROM borrowes, book, bookcopy, member
-            WHERE book.ISBN = bookcopy.ISBN AND member.MembershipID = borrowes.MembershipID AND borrowes.BookID = bookcopy.BookID AND UserName = :username';
-  //  $sql = 'DELETE FROM department WHERE dnumber = :id';
+            WHERE book.ISBN = bookcopy.ISBN AND member.MembershipID = borrowes.MembershipID AND borrowes.BookID = bookcopy.BookID 
+			AND UserName = :username AND';
+	
+	$sql =$q.' DateReturned = :dateRt';
     $result = $pdo->prepare($sql);
+	$result ->bindValue(':dateRt','0000-00-00');
     $result->bindValue(':username', $username);
     $result->execute();
+
+	$sql1 = $q.' DateReturned != :dateRt';
+    $result1 = $pdo->prepare($sql1);
+	$result1 ->bindValue(':dateRt','0000-00-00');
+    $result1->bindValue(':username', $username);
+    $result1->execute();
   }
   catch (PDOException $e)
   {
@@ -36,12 +45,15 @@ padding:5px;
     include 'error.html.php';
     exit();
   }
+
+   
 ?> 
 
 <table>
 <?php foreach($result as $borrowedlist):?>
 	<tr>
 	<td><?php echo $borrowedlist['MembershipID'];?></td>
+	
 	<td><?php echo $borrowedlist['BookID'];?></td>
 	 <td><?php echo $borrowedlist['ISBN'];?></td>
 	  <td style="width:150x"><?php echo $borrowedlist['Title'];?></td>
@@ -53,17 +65,47 @@ padding:5px;
 		   <td><?php echo $borrowedlist['Fee'];?></td>
 		   <td>
 		   <form action="?return" method="post">
-		    <input type="hidden" name = "bookid" value ="<?php echo $booklist['BookID'];?>">
+		    <input type="hidden" name = "bookid" value ="<?php echo $borrowedlist['BookID'];?>">
 			<input type="submit" value="return">
 			</form>
 		</td>
 		</tr>
+
+
 		<?php endforeach;?>
 		</table>
 
+
+<p>Here are your return records:</p>
+<table>
+<?php foreach($result1 as $borrowedlist1):?>
+	<tr>
+	<td><?php echo $borrowedlist1['MembershipID'];?></td>
+	
+	<td><?php echo $borrowedlist1['BookID'];?></td>
+	 <td><?php echo $borrowedlist1['ISBN'];?></td>
+	  <td style="width:150x"><?php echo $borrowedlist1['Title'];?></td>
+	   <td><?php echo $borrowedlist1['Author'];?></td>	    
+		 <td><?php echo $borrowedlist1['DateBorrowed'];?></td>
+		  <td><?php echo $borrowedlist1['DateReturned'];?></td>
+		   <td><?php echo $borrowedlist1['DueDate'];?></td>
+		   <td><?php echo $borrowedlist1['Fee'];?></td>
+		 </tr>
+		<?php endforeach;?>
+
+		</table>
+<form action="?" method="post">
+		   
+			<input type="submit" value="Back">
+			</form>
+ 
  <ul>
 <li><a href="index.php">Go back to the homepage</a></li>
  </ul> 
+  
   </body>
 </html>
+
+
+
 
