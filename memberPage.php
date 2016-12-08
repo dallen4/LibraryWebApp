@@ -143,7 +143,7 @@ catch (PDOException $e)
   include 'error.html.php';
   exit();
 }
-
+//This line below show in a table the books that are available to be borrowed//
 include 'listOfBooksAvailablie.php';
 
 
