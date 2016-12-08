@@ -3,50 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>adding a book to the library</title>
-  <link rel="stylesheet" type="text/css" href="main.css"/>  
-   
+  <link rel="stylesheet" type="text/css" href="main.css"/>
+
 </head>
 
 <body>
     <div id="content">
-    <h1>Add a book</h1>  
+    <h1>Add a Book</h1>
 
-	<?php if (!empty($error_message)) 
+	<?php if (!empty($error_message))
 	include('error.html.php');
    ?>
 
-    
+
     <form action="processAddbook.php" method="post">
 
         <div id="data">
-	
+
 		<label>ISBN:</label>
-		<input type="text" name="username" value = "<?php echo $ISBN; ?>"/> <br />  
-        
+		<input type="text" name="ISBN" value = "<?php echo $ISBN; ?>"/> <br />
+
 		<label>Book tilte:</label>
-		  <input type="text" name="book title" value = "<?php echo $booktitle; ?>"/><br />   
+		  <input type="text" name="bookTitle" value = "<?php echo $booktitle; ?>"/><br />
 		<label>Author:</label>
-		  <input type="text" name="Author" value = "<?php echo $author; ?>"/><br />  
+		  <input type="text" name="Author" value = "<?php echo $author; ?>"/><br />
 		<label>Published Date:</label>
-		  <input type="text" name="Published Date" value = "<?php echo $publisheddate; ?>"/><br /> 
+		  <input type="text" name="PublishedDate" value = "<?php echo $publisheddate; ?>"/><br />
+      <label>Published Date:</label>
+  		  <input type="text" name="Publisher" value = "<?php echo $publisher; ?>"/><br />
 		 <label>Keywords:</label>
-		  <input type="text" name="keywords" value = "<?php echo $keywords; ?>"/><br /> 
-         <label>BookID:</label>
-		  <input type="text" name="BookID" value = "<?php echo $bookid; ?>"/><br /> 
-		  <label>Shelf Number:</label>
-		  <input type="text" name="Shelf Number" value = "<?php echo $shelfnumber; ?>"/><br />  
-        	
+		  <input type="text" name="keywords" value = "<?php echo $keywords; ?>"/><br />
+         <label>Number of Copies:</label>
+		  <input type="number" name="copyCount" value = "<?php echo $copyCount; ?>"/><br />
+
         </div>
 
         <div id="buttons">
-		
+
             <input type="submit" value="Add a book!"></div>
-            
+
         </div>
 
     </form>
     </div>
 </body>
 </html>
-
-
