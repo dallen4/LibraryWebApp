@@ -3,13 +3,64 @@ include 'db.inc.php';
 
 $username = $_COOKIE['mycookie'];
 
-echo "Welcome, $username";
+echo "Welcome, $username!";
+
+
+//include('welcomeMessage.php');
 
 if (isset($_GET['checkbooks']))
 {
   include 'checklist.html.php';
   exit();
 }
+
+//search function
+$keywords = $_POST['Searchtext'];
+
+if(!empty($keywords)){
+
+try
+  {
+   $sql =  "SELECT DISTINCT BookID,bookcopy.ISBN,title,Author,PublishedDate,KeyWords,ShelfNumber,bookstatus.BookStatus 
+	         FROM bookcopy,book,bookstatus 
+			 WHERE book.ISBN=bookcopy.ISBN AND bookcopy.BStatusID=bookstatus.BStatusID
+			 AND (title like '%$keywords%' OR Author like '%$keywords%' OR KeyWords like '%$keywords%')";
+
+    $result = $pdo->query($sql);
+	include 'listOfBooksAvailablie.php';
+    return;
+   	
+}
+
+  catch (PDOException $e)
+  {
+    $error_message = 'Error search book: ' . $e->getMessage();
+    include 'error.html.php';
+    exit();
+  }
+}
+
+
+if(isset($_GET['account']))
+{
+  try
+  {
+    $sql = 'SELECT `MembershipID`,`UserName`,`MemberStatus` FROM `member` JOIN memberstatus USING (`MStatusID`) WHERE `UserName`=:username';  //JOIN query
+    $result = $pdo->prepare($sql);
+    $result->bindValue(':username',$username);
+    $result->execute();
+    include 'accountInfo.php';
+	return;
+	
+}
+  catch (PDOException $e)
+  {
+    $error_message = 'Error checking account: ' . $e->getMessage();
+    include 'error.html.php';
+    exit();
+  }
+}
+
 
 //when a member borrows a book, the system first modifies booksatus into 'borrowed' and then inserts a record into borrows table, here we need to use transaction
 
@@ -45,6 +96,8 @@ $memStatusID = $memberStarusID[0];     ////get the memberStarusID of the user lo
 }
 
 $bookStatusID = $bStatusID[0];
+
+
 
 //check if the member is in a normal starus
 if($memStatusID == '0')
@@ -134,7 +187,7 @@ try
 
 	$sql =  'SELECT BookID,bookcopy.ISBN,title,Author,PublishedDate,KeyWords,ShelfNumber,bookstatus.BookStatus 
 	         FROM bookcopy,book,bookstatus 
-			 WHERE book.ISBN=bookcopy.ISBN AND bookcopy.BStatusID=bookstatus.BStatusID AND bookcopy.BStatusID =1';
+			 WHERE book.ISBN=bookcopy.ISBN AND bookcopy.BStatusID=bookstatus.BStatusID';
  
   $result = $pdo->query($sql);
 }

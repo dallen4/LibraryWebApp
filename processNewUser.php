@@ -84,7 +84,7 @@ try
     $s->execute();
 
   echo "Sign Up successfully!! $username! ";
-  echo '<br/>';
+  include('index.php');
 
 }
 
@@ -101,5 +101,10 @@ catch (PDOException $e)
 <ul>
 <li><a href="index.php">Go back to the homepage</a></li>
  </ul>
+ <div id="footer">
+            <p class="copyright">
+                &copy; <?php echo date("Y"); ?> Ourlibrary.com
+            </p>
+        </div>
   </body>
 </html>

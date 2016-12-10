@@ -1,34 +1,238 @@
+/* the styles for the HTML elements */
 body {
+    margin-top: 95px;
+    background-color: rgb(203, 238, 156);
+	background-image: url(apic1973x.jpg);
+	background-repeat: repeat-x;
+
+	
     font-family: Arial, Helvetica, sans-serif;
 }
-#content {
-    width: 450px;
-    margin: 0 auto;
-    padding: 20px 20px;
-    background: white;
+h1 {
+    font-size: 300%;    
+    padding: .5em 0 .25em;
+}
+h2 {
+   margin-top:50px;
+    padding: .5em 0 .25em;
+	text-align:left;
+}
+
+h1, h2 {
+    color: rgb(285, 195, 34);
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 2.5em;
+	list-style:none;
+}
+li {
+    margin: 0;
+   	float:left;
+}
+a {
+	margin: 0;
+	display:block;	
+	text-decoration:none;
+	text-align:center;
+	line-height:40px;
+    color: gray;   
+    font-weight: bold;
     
 }
-h1 {
-    color: navy;
+a:hover {
+    color: blue;
+	text-decoration:underline;
+}
+p {
+    margin: 0;
+    padding: .25em 0;
+	color: black;
+}
+
+form {
+    margin: 0;
 }
 label {
+    color: rgb(255, 150, 34);	
     width: 10em;
     padding-right: 1em;
     float: left;
 }
+
+select {
+    float: left;
+    width: 15em;
+	margin-bottom: .5em;
+}
+textarea {
+    width: 25em;
+    margin-bottom: .5em;
+}
+table,th,td
+{
+border:1px solid black;
+margin:0px;
+padding:5px;
+}
+br {
+    clear: both;
+}
+hr {
+     height:5px;
+	 background-color:rgb(118, 182, 60);
+	 color:gray;
+}
+
+/* the styles for the div tags that divide the page into sections */
+#content {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px 20px 80px 20px;
+    background: white;
+	text-align : center;
+	
+    
+}
+
 #data input {
     float: left;
     width: 15em;
-    margin-bottom: .5em;
+	margin-bottom: .5em;
 }
 #buttons input {
-    float: left;
-    margin-bottom: .5em;
+    float: right;
+	margin-bottom: .15em;
 }
-br {
-    clear: left;"main.css"
+#page {
+    width: 760px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid rgb(119, 75, 77);
+}
+#header {
+    margin: 0;
+    border-bottom: 2px solid rgb(119, 75, 77);
+    padding: .5em 2em;
+}
+#header h1 {
+    margin: 0;
+    padding: .5em 0;
+    color: black;
+}
+#main {
+    margin: 0;
+    padding: .5em 2em;
+}
+
+#sidebar {
+    float: left;
+    width: 150px;
+}
+#sidebar h2 {
+    padding: 1em 0 .25em;
+}
+#sidebar ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+#sidebar li {
+    margin: 0;
+    padding-bottom: .25em;
+}
+#left_column {
+    float: left;
+    width: 150px;
+    padding-left: .5em;
+}
+#right_column {
+    float: left;
+    width: 300px;
+    padding-left: 1em;
+}
+#footer {
+    clear: both;
+    margin-top: 1em;
+    padding-right: 1em;
+   
+}
+#footer p {
+    text-align: center;
+    font-size: 80%;
+    margin: 1em 0;
+}
+/********************************************************************
+* Styles for classes
+********************************************************************/
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
 }
 .error {
-    color: red;
+     color: red;
     font-weight: bold;
+}
+
+
+.formarea {
+    width: 400px;   
+    margin: 0 auto;
+	margin-top:50px;
+    padding: 30px 40px;
+	border: 3px solid rgb(118, 182, 60);
+}
+.line{
+    margin: 10px;
+    height: 20px;
+    width: 2px;
+    background: gray;
+	text-align:center;
+	line-height:30px;
+}
+/********************************************************************
+* Other styles for the Product Manager application
+********************************************************************/
+#add_edit_product_form {
+    margin: .5em 0 2em;
+}
+#add_edit_product_form label {
+    width: 8em;
+    padding-right: 1em;
+    padding-bottom: .5em;
+    text-align: right;
+    float: left;
+}
+#add_edit_product_form input {
+    float: left;
+}
+#add_edit_product_form input[text] {
+    width: 25em;
+}
+#add_edit_product_form textarea {
+    width: 25em;
+}
+#edit_button_form {
+    float: left;
+    margin-right: .5em;
+}
+#product_image_column {
+    width: 8em;
+    text-align: center;
+}
+#category_table form {
+    margin: 0;
+}
+#category_table td {
+    margin: 0;
+    padding: 0 .5em;
+}
+#add_category_form  form {
+    margin: 0;
+}
+#add_category_form input {
+    margin-right: .5em;
 }

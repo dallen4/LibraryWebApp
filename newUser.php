@@ -10,13 +10,16 @@
 
 <body>
     <div id="content">
+	<ul>
+<li><a href="index.php">Home</a></li>
+</ul>
     <h1>New user sign up</h1>  
 
 	<?php if (!empty($error_message)) 
 	include('error.html.php');
    ?>
 
-    
+   <div  class="formarea">
     <form action="processNewUser.php" method="post">
 
         <div id="data">
@@ -46,7 +49,13 @@
         </div>
 
     </form>
+	</div>
     </div>
+	<div id="footer">
+            <p class="copyright">
+                &copy; <?php echo date("Y"); ?> Ourlibrary.com
+            </p>
+        </div>
 </body>
 </html>
 

@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>check books</title>
+	<link rel="stylesheet" type="text/css" href="main.css"/>  
     <style type="text/css">
-  //  textarea {
+    textarea {
       display: block;
       width: 100%;
     }
@@ -16,7 +17,13 @@ padding:5px;
     </style>
   </head>
   <body>
-   <p>Here are all the books you borrowed:</p>
+  <div id="content">
+   <ul>
+<li><a href="index.php">Home</a></li>
+<li><div class="line"></div>
+<li><a href="?">Borrow Book</a></li>
+ </ul> 
+   <h2>Here are all the books you borrowed:</h2>
  <?php    
 
        $username = $_COOKIE['mycookie'];
@@ -50,6 +57,17 @@ padding:5px;
 ?> 
 
 <table>
+<TR BGCOLOR=yellow>
+           <TH>MemberID</TH>
+		   <TH>BookID</TH>
+           <TH>ISBN</TH>
+		   <TH>Title</TH>
+		   <TH>Author</TH>
+		   <TH>DateBorrowed</TH>
+           <TH>DateReturned</TH>
+		   <TH>DueDate</TH>
+		   <TH>Fee</TH>
+</TR>
 <?php foreach($result as $borrowedlist):?>
 	<tr>
 	<td><?php echo $borrowedlist['MembershipID'];?></td>
@@ -76,8 +94,19 @@ padding:5px;
 		</table>
 
 
-<p>Here are your return records:</p>
+<h2>Here are your return records:</h2>
 <table>
+<TR BGCOLOR=yellow>
+           <TH>MembershipID</TH>
+		   <TH>BookID</TH>
+           <TH>ISBN</TH>
+		   <TH>Title</TH>
+		   <TH>Author</TH>
+		   <TH>DateBorrowed</TH>
+           <TH>DateReturned</TH>
+		   <TH>DueDate</TH>
+		   <TH>Fee</TH>
+</TR>
 <?php foreach($result1 as $borrowedlist1):?>
 	<tr>
 	<td><?php echo $borrowedlist1['MembershipID'];?></td>
@@ -94,15 +123,13 @@ padding:5px;
 		<?php endforeach;?>
 
 		</table>
-<form action="?" method="post">
-		   
-			<input type="submit" value="Back">
-			</form>
- 
- <ul>
-<li><a href="index.php">Go back to the homepage</a></li>
- </ul> 
-  
+
+  </div>
+  <div id="footer">
+            <p class="copyright">
+                &copy; <?php echo date("Y"); ?> Ourlibrary.com
+            </p>
+        </div>
   </body>
 </html>
 

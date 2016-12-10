@@ -6,13 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="main.css"/>
   </head>
   <body>
-    <p>
+      <p>
     <p class = "error"><?php echo $error_message; ?></p>
     </p>
 
-  <form action="?" method="post">
-	<input type="submit" value="Back">
-</form>
-  </body>
+   </body>
 </html>
 
