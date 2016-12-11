@@ -5,11 +5,11 @@ body {
 	background-image: url(apic1973x.jpg);
 	background-repeat: repeat-x;
 
-	
+
     font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
-    font-size: 300%;    
+    font-size: 300%;
     padding: .5em 0 .25em;
 }
 h2 {
@@ -33,13 +33,13 @@ li {
 }
 a {
 	margin: 0;
-	display:block;	
+	display:block;
 	text-decoration:none;
 	text-align:center;
 	line-height:40px;
-    color: gray;   
+    color: gray;
     font-weight: bold;
-    
+
 }
 a:hover {
     color: blue;
@@ -55,7 +55,7 @@ form {
     margin: 0;
 }
 label {
-    color: rgb(255, 150, 34);	
+    color: rgb(255, 150, 34);
     width: 10em;
     padding-right: 1em;
     float: left;
@@ -87,13 +87,14 @@ hr {
 
 /* the styles for the div tags that divide the page into sections */
 #content {
-    width: 1000px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px 20px 80px 20px;
     background: white;
 	text-align : center;
-	
-    
+  border-radius: 5%;
+
+
 }
 
 #data input {
@@ -156,7 +157,7 @@ hr {
     clear: both;
     margin-top: 1em;
     padding-right: 1em;
-   
+
 }
 #footer p {
     text-align: center;
@@ -179,7 +180,7 @@ hr {
 
 
 .formarea {
-    width: 400px;   
+    width: 400px;
     margin: 0 auto;
 	margin-top:50px;
     padding: 30px 40px;

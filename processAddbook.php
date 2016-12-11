@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Sign Up Result</title>
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="main.css"/>
 </head>
 <body>
