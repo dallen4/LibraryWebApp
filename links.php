@@ -18,6 +18,14 @@
     var txt = "Check the Members";
     document.write("<p>" + txt.link("memberlist.html.php") + "</p>");
 </script>
+    <script>
+    var txt = "Add a new Book";
+    document.write("<p>" + txt.link("AddABook.php") + "</p>");
+</script>
+       <script>
+    var txt = "Add a  Book Copy";
+    document.write("<p>" + txt.link("AddACopy.php") + "</p>");
+</script>
 <script>
 
     var utc = new Date().toJSON().slice(0,10);
