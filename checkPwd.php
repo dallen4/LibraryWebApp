@@ -65,7 +65,7 @@ $UserPassword[] = $row['AdminPassword'];
 		 
           elseif($usertype == "administrator")
           
-		  header('Location: adminPage.php');
+		  header('Location: links.php');
 
 
 	  }
