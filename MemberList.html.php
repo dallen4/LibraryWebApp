@@ -27,7 +27,7 @@ catch (PDOException $e)
     include 'error.html.php';
     exit();
 }
-/*Deleting a member*/
+/*Deleting a member
 if (isset($_GET['delete'])) {
     try {
         $sql_uMID_uSID = 'Delete FROM member WHERE MembershipID= $booklist2['MembershipID']';
@@ -41,7 +41,7 @@ if (isset($_GET['delete'])) {
         exit();
     }
 }
-
+*///
 ?>
 <table>
     <TR BGCOLOR=#7fffd4>
