@@ -34,6 +34,8 @@
 		   <TH>KeyWords</TH>
            <TH>ShelfNumber</TH>
 		   <TH>BookStatus</TH>
+			   <TH>Borrow Button</TH>
+
 </TR>
 <?php foreach($result as $booklist):?>
 	<tr>
