@@ -11,6 +11,7 @@ Author  		VARCHAR(30),
 PublishedDate 	DATE,
 Publisher 		VARCHAR(50),
 KeyWords 		VARCHAR(20),
+copyCount               int,
 CONSTRAINT Book PRIMARY KEY (ISBN));
 
 CREATE TABLE IF NOT EXISTS Shelf
@@ -25,7 +26,7 @@ BookStatus  	 VARCHAR(30),
 CONSTRAINT BookStatus_PK PRIMARY KEY (BStatusID ));
 
 CREATE TABLE IF NOT EXISTS BookCopy
-(BookID         NUMERIC(11,0)  NOT NULL,
+(BookID         INT NOT NULL AUTO_INCREMENT,
 ISBN         	CHAR(13)       NOT NULL,
 ShelfNumber     NUMERIC(10,0)  NOT NULL,
 BStatusID       NUMERIC(2,0)  NOT NULL,
@@ -73,7 +74,7 @@ CONSTRAINT Member_PK PRIMARY KEY (MembershipID ),
 CONSTRAINT Member_FK2 FOREIGN KEY (MStatusID) REFERENCES MemberStatus (MStatusID));
 
 CREATE TABLE IF NOT EXISTS Borrowes  
-(BookID          NUMERIC(11,0) NOT NULL,
+(BookID          INT NOT NULL AUTO_INCREMENT,
 MembershipID     INT NOT NULL,
 DateBorrowed	 DATE NOT NULL,
 DateReturned	 DATE,
@@ -92,9 +93,9 @@ CONSTRAINT Adminstrator_PK PRIMARY KEY (EmployeeID));
 
 
 CREATE TABLE IF NOT EXISTS Manage
-(`Operation#`   INT  		   NOT NULL AUTO_INCREMENT,
+(`Operation#`   INT   NOT NULL AUTO_INCREMENT,
 EmployeeID      VARCHAR(10)  NOT NULL,
-BookID          NUMERIC(11,0)  NOT NULL,
+BookID          INT NOT NULL,
 OperationDate	TIMESTAMP,
 OperationLog  	VARCHAR(100),
 CONSTRAINT Manage_PK PRIMARY KEY (`Operation#`),
@@ -114,16 +115,9 @@ DELIMITER ;
 
 
 -- Populate tables
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Database');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9781934356920','Seven Databases in Seven Weeks\: A Guide to Modern Databases and the NoSQL Movement','Eric Redmond; Jim Wilson','2012-05-01' ,'Pragmatic Bookshelf', 'Database');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780062413901','How to Use Graphic Design to Sell Things, Explain Things, Make Things Look Better, Make People Laugh, Make People Cry, and (Every Once in a While) Change the World','Michael Bierut','2015-11-01' ,'Harper Design', 'Design');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780465050659','The Design of Everyday Things: Revised and Expanded Edition','Don Norman','2013-11-01' ,'Basic Books', 'Design');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9781482317800','Tongue Twisters for Kids','Riley Weber','2013-03-01' ,'CreateSpace Independent Publishing Platform', 'Kids');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9781580625579','The Everything Kids\' Science Experiments Book Boil Ice, Float Water, Measure Gravity-Challenge the World Around You!','Tom Robinson','2001-10-01' ,'Adams Media', 'Kids');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9781503935310','Everything We Keep: Novel','Kerry Lonsdale','2016-08-01' ,'Lake Union Publishing', 'Fiction');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780451419927','Secrets of a Charmed Life','Susan Meissner','2015-02-01' ,'NAL', 'Fiction');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780143108061','Creative Schools: The Grassroots Revolution That\'s Transforming Education','Ken Robins Ph.D.; Lou Aronica','2016-04-01' ,'Penguin Books', 'Education');
-INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`) VALUES ('9780544104402','How Children Succeed: Grit, Curiosity, and the Hidden Power of Character','Paul Tough','2013-07-01' ,'Mariner Books', 'Education');
+INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`,`copyCount`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Database',3);
+INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`,`copyCount`) VALUES ('9781503935310','Everything We Keep: Novel','Kerry Lonsdale','2016-08-01' ,'Lake Union Publishing', 'Fiction',2);
+INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`,`copyCount`) VALUES ('9780544104402','How Children Succeed: Grit, Curiosity, and the Hidden Power of Character','Paul Tough','2013-07-01' ,'Mariner Books', 'Education',2);
 
 INSERT INTO shelf(`ShelfNumber`,`ShelfCategory`) VALUES(01001, 'Computer');
 INSERT INTO shelf(`ShelfNumber`,`ShelfCategory`) VALUES(01002, 'Literature');
@@ -140,25 +134,14 @@ INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`V
 INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80813,'The Library Store','PO Box 0964','Tremont', 'IL', '61568');
 INSERT INTO supplier(`VendorNumber`,`VendorName`,`VendorAddress`,`VendorCity`,`VendorState`,`VendorZipcode`) VALUES(80814,'Brodart Order Center','500 Arch Street','Williamsport', 'PA', '17701');
 
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9781580625579', 15);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9781482317800', 25);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80811, '9780544104402', 10);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80812, '9780321884497', 10);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80812, '9781934356920', 15);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780321884497', 8);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780544104402', 6);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80813, '9780465050659', 18);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9780451419927', 8);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9781503935310', 10);
-INSERT INTO supplies(`VendorNumber`,`ISBN`,`Quantity`) VALUES(80814, '9780143108061', 5);
 
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170001, '9780321884497', 1001, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170002, '9780321884497', 1001, 0);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(170003, '9780321884497', 1001, 0);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(180001, '9781503935310', 1002, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(180002, '9781503935310', 1002, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(190001, '9780544104402', 1004, 1);
-INSERT INTO bookcopy(`BookID`,`ISBN`,`ShelfNumber`,`BStatusID`) VALUES(190002, '9780544104402', 1004, 2);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9780321884497', 1001, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9780321884497', 1001, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9780321884497', 1001, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9781503935310', 1002, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9781503935310', 1002, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9780544104402', 1004, 1);
+INSERT INTO bookcopy(`ISBN`,`ShelfNumber`,`BStatusID`) VALUES('9780544104402', 1004, 1);
 
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(0, 'Waiting for approval');
 INSERT INTO memberstatus(`MStatusID`,`MemberStatus`) VALUES(1, 'Normal');
@@ -168,5 +151,4 @@ INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016001','LB201
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016002','LB2016002');
 INSERT INTO adminstrator(`EmployeeID`,`AdminPassword`) VALUES('LB2016003','LB2016003');
 
-INSERT INTO manage(`EmployeeID`,`BookID`,`OperationDate`,`OperationLog`) VALUES('LB2016001',170001, CURRENT_TIMESTAMP, 'Added book and set book status as in library');
-INSERT INTO manage(`EmployeeID`,`BookID`,`OperationDate`,`OperationLog`) VALUES('LB2016001',190001, CURRENT_TIMESTAMP, 'Marked book status as Lost'); 
+INSERT INTO manage(`EmployeeID`,`BookID`,`OperationDate`,`OperationLog`) VALUES('LB2016001',1, CURRENT_TIMESTAMP, 'Added book and set book status as in library');

@@ -2,10 +2,12 @@
 <html>
 <head>
     <title>Admin's Control Panel</title>
-
-
+<link rel="stylesheet" type="text/css" href="main.css"/>  
+</head>
+<div id="content">
+<body>
 <p>Welcom Admin</p>
-
+<h1>Admin Menu:</h1>
 <script>
     var txt = "Check the Books";
     document.write("<p>" + txt.link("Books.php") + "</p>");
@@ -31,15 +33,13 @@
     var utc = new Date().toJSON().slice(0,10);
     document.write(utc);
 </script>
-</head>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<body>
-
 
 
 </body>
+</div>
+<div id="footer">
+            <p class="copyright">
+                &copy; <?php echo date("Y"); ?> Ourlibrary.com
+            </p>
+        </div>
 </html>
