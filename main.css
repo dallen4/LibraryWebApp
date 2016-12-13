@@ -102,6 +102,12 @@ hr {
 
 }
 
+ #mstatus{
+
+    width: 3em;
+	margin-bottom: .5em;
+}
+
 #data input {
     float: left;
     width: 15em;

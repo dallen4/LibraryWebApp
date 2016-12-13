@@ -2,17 +2,17 @@
 <html>
 <head>
     <title>Books Copies</title>
-    <style>
-        table,th,td
-        {
-            border:1px solid black;
-            padding:5px;
-        }
-    </style>
+     <link rel="stylesheet" type="text/css" href="../main.css"/>  
 </head>
 <body>
+<div id="content">
+<ul>
+<li><a href="../index.php">Home</a></li>
+<li><div class="line"></div></li>
+<li><a href="links.php">Admin Control panel</a></li>
+</ul></br>
 <?php
-include 'db.inc.php';
+include '../db.inc.php';
 $username = $_COOKIE['mycookie'];
 echo "Welcome, $username";
 try
@@ -29,7 +29,7 @@ catch (PDOException $e)
 }
 
 ?>
-<p>Here are all of the book copies that we have and thier statues:</p>
+<h3>Here are all of the book copies that we have and thier statues:</h3>
 <table>
     <TR BGCOLOR=#a52a2a>
         <TH>Book ID</TH>
@@ -55,7 +55,6 @@ catch (PDOException $e)
     <?php endforeach;?>
 
 </table>
+</div>
 </body>
-<li><a href="links.php">Go back to the Admins Page</a></li>
-
 </html>

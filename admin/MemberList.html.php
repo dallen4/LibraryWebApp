@@ -2,17 +2,17 @@
 <html>
 <head>
     <title>Members List</title>
-    <style>
-        table,th,td
-        {
-            border:1px solid black;
-            padding:5px;
-        }
-    </style>
+   <link rel="stylesheet" type="text/css" href="../main.css"/>  
 </head>
 <body>
+<div id="content">
+<ul>
+<li><a href="../index.php">Home</a></li>
+<li><div class="line"></div></li>
+<li><a href="links.php">Admin Control panel</a></li>
+</ul></br>
 <?php
-include 'db.inc.php';
+include '../db.inc.php';
 $username = $_COOKIE['mycookie'];
 echo "Welcome, $username";
 try
@@ -27,21 +27,33 @@ catch (PDOException $e)
     include 'error.html.php';
     exit();
 }
-/*Deleting a member
-if (isset($_GET['delete'])) {
-    try {
-        $sql_uMID_uSID = 'Delete FROM member WHERE MembershipID= $booklist2['MembershipID']';
-        $result = $pdo->prepare($sql_uMID_uSID);
-        $result->bindValue(':MembershipID', $MembershipID);
-        $result->execute();
+
+echo "9999999";
+$mid =$_POST['mid'];
+$mstatus = $_POST['mstatus'];
+echo "$mid";
+echo "$mstatus";
+
+//Edit member status
+if (isset($_GET['edit'])) {
+
+	echo "88888888";
+
+    try 
+	{   
+		$sql = "UPDATE member SET MStatusID = $mstatus WHERE MembershipID = $mid";
+       // $result = $pdo->prepare($sql);
+      //  $result->bindValue(':MembershipID', $mid);
+	//	$result->bindValue(':mstatusid', $mstatus);
+       		 $result = $pdo->query($sql);
     }catch (PDOException $e)
     {
-        $error_message = 'Error fetching books: ' . $e->getMessage();
-        include 'error.html.php';
+        $error_message = 'Error edit member: ' . $e->getMessage();
+        include '../messagedispaly/outputMessage.php';
         exit();
     }
 }
-*///
+
 ?>
 <table>
     <TR BGCOLOR=#7fffd4>
@@ -53,7 +65,7 @@ if (isset($_GET['delete'])) {
         <TH>Member Zipcode</TH>
         <TH>Member Phone </TH>
         <TH>Member Status</TH>
-        <TH>Delete Button</TH>
+        
     </TR>
     <?php foreach($result3 as $booklist2):?>
     <tr>
@@ -64,17 +76,24 @@ if (isset($_GET['delete'])) {
         <td><?php echo $booklist2['MemberState'];?></td>
         <td><?php echo $booklist2['MemberZipcode'];?></td>
         <td><?php echo $booklist2['PhoneNumber'];?></td>
-        <td><?php echo $booklist2['MStatusID'];?></td>
-        <td>
-            <form action=" " method="post">
-                <input type="hidden" name = "delete" value ="<?php echo $booklist2['MembershipID'];?>">
-                <input type="submit" name="delete" value="Delete">
+       
+	    <td>
+            <form action="?edit" method="post">
+			<select id="mstatus" name="mstatus" >
+		<option value= "$booklist2['MStatusID']"><?php echo $booklist2['MStatusID'];?></option>
+       <option value= "0">0</option>
+       <option value= "1">1</option> 
+	   <option value= "2">2</option>
+    </select> 
+			    <input type="hidden" name = "mid" value ="<?php echo $booklist2['MembershipID'];?>">
+                <input type="submit" name="edit" value="EDIT">
             </form>
         </td>
     </tr>
 <?php endforeach;?>
 </table>
+</div>
 </body>
-<li><a href="links.php">Go back to the Admins Page</a></li>
+
 
 </html>
