@@ -182,7 +182,11 @@ hr {
      color: red;
     font-weight: bold;
 }
-
+.success {
+     
+	 text-align: center;
+    font-weight: bold;
+}
 
 .formarea {
     width: 400px;

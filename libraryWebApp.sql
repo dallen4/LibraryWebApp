@@ -106,10 +106,10 @@ REFERENCES BookCopy(BookID));
 
 -- Create trigger
 DELIMITER **
-CREATE TRIGGER tri_returndate
-AFTER UPDATE ON bookcopy
+CREATE TRIGGER tri_return
+AFTER UPDATE ON borrowes
 FOR EACH ROW BEGIN
-UPDATE borrowes SET `DateReturned`= CURRENT_DATE WHERE `BookID`= OLD.bookid;
+UPDATE bookcopy SET BStatusID=1 WHERE BookID =old.bookid;
 END**
 DELIMITER ;
 

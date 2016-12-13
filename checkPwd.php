@@ -1,6 +1,8 @@
 
 	  <?php
       include 'db.inc.php'; 
+	  require_once('util/main.php');
+      require_once('util/tags.php');
 	  $userlogin = $_POST['userlogin'];	 
       $userpwd = $_POST['userpwd'];
 	  $usertype = $_POST['usertype'];
@@ -8,12 +10,12 @@
 	  setcookie('mycookie',$userlogin);
 
 if(empty($userlogin)){
-	   $error_message = 'Please enter your username!';
+	   $onpageerror_message = 'Please enter your username!';
 	  }
       else
-		$error_message = '';
+		$onpageerror_message = '';
 
-if ($error_message != '') {
+if ($onpageerror_message != '') {
         include('index.php');
         exit();
     }
@@ -35,7 +37,7 @@ try
 catch (PDOException $e)
 {
   $error_message = 'Error : ' . $e->getMessage();
-  include 'error.html.php';
+  include './messagedisplay/outputMessage.php';
   exit();
 }
 
@@ -53,7 +55,8 @@ $UserPassword[] = $row['AdminPassword'];
     if ($userpwd == $UserPassword[0]){
 		  echo "Your password is unprotected, please change your password!";	
 	
-         include 'adminResetPwd.php';
+         include './admin/adminResetPwd.php';
+		 //include './messagedisplay/outputMessage.php';
 	  }
 
 	
@@ -61,18 +64,19 @@ $UserPassword[] = $row['AdminPassword'];
 		  echo "Successful login!".$userlogin;	
 	
 		 if($usertype == "member")
-           header('Location: memberPage.php');
+           header('Location: ./member/memberPage.php');
+		
 		 
           elseif($usertype == "administrator")
           
-		  header('Location: links.php');
+		  header('Location: ./admin/links.php');
 
 
 	  }
 	  else {
 		  echo "Sorry, login failed! Wrong Username or password ";
 
-		 include('login.html');
+		 include('index.php');
 	}
   
  ?>

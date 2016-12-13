@@ -12,15 +12,18 @@
 <div id="content"> 
 
 <ul>
-<li><a href="newUser.php">Not a member? Sign up!</a></li>
+<li><a href="./member/newUser.php">Not a member? Sign up!</a></li>
 </ul>
     <h1>Welcome to our library!</h1>  
      <hr/>
 	
 <h2>Enter your username and password to login or register as a new member</h2>  
 <div class="formarea">
-<?php if (!empty($error_message)) 
-	include('error.html.php');
+<?php 
+require_once('util/main.php');
+      require_once('util/tags.php');
+if (!empty($onpageerror_message)) 
+	include('./messagedispaly/onPageError.php');
    ?>
   <form action="checkPwd.php" method="post">   
   
