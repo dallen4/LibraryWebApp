@@ -10,6 +10,8 @@
 <li><a href="../index.php">Home</a></li>
 <li><div class="line"></div></li>
 <li><a href="links.php">Admin Control panel</a></li>
+<li><div class="line"></div></li>
+<li><a href="bookstatistics.php">Statistics</a></li>
 </ul></br>
 <?php
 include '../db.inc.php';
@@ -29,6 +31,8 @@ catch (PDOException $e)
 }
 
 ?>
+    
+
 <h3>Here are all of the book copies that we have and thier statues:</h3>
 <table>
     <TR BGCOLOR=#a52a2a>
@@ -51,6 +55,7 @@ catch (PDOException $e)
                     <input type="submit" value="Delete">
                 </form>
             </td>
+			
         </tr>
     <?php endforeach;?>
 
