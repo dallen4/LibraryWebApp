@@ -35,7 +35,7 @@ catch (PDOException $e)
 
 try
 {
-  $sql2 =  'SELECT DISTINCT `ISBN` FROM bookcopy WHERE `BookID` NOT IN (SELECT BookID FROM borrowes)';
+  $sql2 =  'SELECT `ISBN`,`Title`,`Author` FROM book WHERE `ISBN` NOT IN (SELECT ISBN FROM borrowes)';
 
     $result2 = $pdo->query($sql2);
 }
@@ -55,7 +55,7 @@ catch (PDOException $e)
 <table>
     <TR BGCOLOR=#a52a20>    
        
-        <TH>Book Status </TH>>
+        <TH>Book Status </TH>
         <TH>Number</TH>
     </TR>
     <?php foreach($result as $booklist1):?>
@@ -73,12 +73,16 @@ catch (PDOException $e)
 <table>
     <TR BGCOLOR=#a52a20>    
        
-        <TH>ISBN</TH>>
+        <TH>ISBN</TH>
+		<TH>TITLE</TH>
+		<TH>AUTHOR</TH>
         
     </TR>
     <?php foreach($result2 as $booklist2):?>
         <tr>
-            <td><?php echo $booklist2['ISBN'];?></td>          
+            <td><?php echo $booklist2['ISBN'];?></td>
+			<td><?php echo $booklist2['Title'];?></td>
+			<td><?php echo $booklist2['Author'];?></td>
 
             			
         </tr>
