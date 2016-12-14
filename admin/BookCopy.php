@@ -39,7 +39,7 @@ catch (PDOException $e)
         <TH>Book ID</TH>
         <TH>ISBN Number</TH>
         <TH>Shelf Number</TH>
-        <TH>Book Status </TH>>
+        <TH>Book Status </TH>
         <TH>Delete Button</TH>
     </TR>
     <?php foreach($result2 as $booklist1):?>
@@ -50,9 +50,13 @@ catch (PDOException $e)
             <td><?php echo $booklist1['BStatusID'];?></td>
 
             <td>
-                <form action="DeleteABook.php" method="post">
-                    <input type="hidden" name = "bookid" value ="<?php echo $booklist['BookID'];?>">
+                <form action="DeleteBookprocess.php" method="post">
+                    <input type="hidden" name = "bookid" value ="<?php echo $booklist1['BookID'];?>"> 
+					<?php if($booklist1['BStatusID'] =='0'):?>
+			        <input type="submit" value="Delete"  disabled="disabled" >
+			         <?php else: ?>
                     <input type="submit" value="Delete">
+					<?php endif;?>
                 </form>
             </td>
 			

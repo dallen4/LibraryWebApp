@@ -5,7 +5,7 @@ echo "Welcome, $username";
 
 
 
-			 try
+try
 {
 	$sql =  'SELECT BookID,bookcopy.ISBN,title,Author,PublishedDate,KeyWords,ShelfNumber,bookstatus.BookStatus 
 	         FROM bookcopy,book,bookstatus 

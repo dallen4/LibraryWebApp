@@ -28,7 +28,6 @@ catch (PDOException $e)
     exit();
 }
 
-echo "9999999";
 $mid =$_POST['mid'];
 $mstatus = $_POST['mstatus'];
 echo "$mid";
@@ -36,8 +35,6 @@ echo "$mstatus";
 
 //Edit member status
 if (isset($_GET['edit'])) {
-
-	echo "88888888";
 
     try 
 	{   

@@ -9,6 +9,10 @@
 <p>Welcom Admin</p>
 <h2>Admin Menu:</h2>
 <script>
+    var txt = "Home";
+    document.write("<p>" + txt.link("../index.php") + "</p>");
+</script>
+<script>
     var txt = "Check the Books";
     document.write("<p>" + txt.link("Books.php") + "</p>");
 </script>
@@ -24,6 +28,7 @@
     var txt = "Add Book";
     document.write("<p>" + txt.link("AddABook.php") + "</p>");
 </script>
+
        
 <script>
 

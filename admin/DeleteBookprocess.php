@@ -1,22 +1,27 @@
   <?php
-      include 'db.inc.php';
-try {
+      include '../db.inc.php';
+try { 
 
+	
 
-    // sql to delete a record
-    $sql = "DELETE
-    FROM book,bookcopy
-    join using (ISBN)
-    WHERE BStatusId=2 or BStatusId=3;"
+	$pdo->query('SET FOREIGN_KEY_CHECKS = 0');
+ //sql to delete a record
+    $sql = "DELETE from bookcopy where `BookID`= :bookid";
 
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    echo "Record deleted successfully";
+	$s = $pdo->prepare($sql);
+    $s->bindValue(':bookid', $_POST['bookid']);
+	$s->execute(); 
+
+	$pdo->query('SET FOREIGN_KEY_CHECKS = 1');
+
+    $output_message = "Record deleted successfully";
+	include '../messagedispaly/outputMessage.php';
   }
 catch(PDOException $e)
     {
-    echo $sql . "<br>" . $e->getMessage();
+    $error_message = 'delete bookcopy Error : ' . $e->getMessage();
+    include '../messagedispaly/outputMessage.php';
+    exit();
     }
 
-$conn = null;
 ?>

@@ -7,6 +7,7 @@
       $userpwd = $_POST['userpwd'];
 	  $usertype = $_POST['usertype'];
 
+	  setcookie('mycookie',$usertype);
 	  setcookie('mycookie',$userlogin);
 
 if(empty($userlogin)){

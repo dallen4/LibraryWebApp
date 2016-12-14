@@ -7,12 +7,10 @@
   </head>
   <body>
   <div id="content">
+  <?php $usertype = $_COOKIE['usertype'];?>
+
 <ul>
 <li><a href="../index.php">Home</a></li>
-<li><div class="line"></div></li>
-<li><a href="AddABook.php">Add another book</a></li>
-<li><div class="line"></div></li>
-<li><a href="links.php">Admin Control panel</a></li>
 </ul> </br>
 
       <div>

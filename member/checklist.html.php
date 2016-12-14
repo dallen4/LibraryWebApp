@@ -23,7 +23,7 @@ padding:5px;
 <li><div class="line"></div>
 <li><a href="?">Borrow Book</a></li>
  </ul> 
-   <h3>Here are all the books you borrowed:</h3>
+   <h3>Here are all the books details you borrowed:</h3>
  <?php    
 
        $username = $_COOKIE['mycookie'];
@@ -40,7 +40,10 @@ padding:5px;
     $result->bindValue(':username', $username);
     $result->execute();
 
-	$sql1 = $q.' DateReturned != :dateRt';
+	$sql1 = 'SELECT borrowes.`MembershipID`,`BookID`,`DateBorrowed`,`DateReturned`,`DueDate` ,`Fee` 
+	         FROM `borrowes`, member 
+			WHERE borrowes.MembershipID = member.MembershipID 
+			AND UserName = :username AND DateReturned != :dateRt';
     $result1 = $pdo->prepare($sql1);
 	$result1 ->bindValue(':dateRt','0000-00-00');
     $result1->bindValue(':username', $username);
@@ -94,14 +97,11 @@ padding:5px;
 		</table>
 
 
-<h3>Here are your return records:</h3>
+<h3>Here are your brief return records:</h3>
 <table>
 <TR BGCOLOR=yellow>
            <TH>MembershipID</TH>
 		   <TH>BookID</TH>
-           <TH>ISBN</TH>
-		   <TH>Title</TH>
-		   <TH>Author</TH>
 		   <TH>DateBorrowed</TH>
            <TH>DateReturned</TH>
 		   <TH>DueDate</TH>
@@ -112,9 +112,7 @@ padding:5px;
 	<td><?php echo $borrowedlist1['MembershipID'];?></td>
 	
 	<td><?php echo $borrowedlist1['BookID'];?></td>
-	 <td><?php echo $borrowedlist1['ISBN'];?></td>
-	  <td style="width:150x"><?php echo $borrowedlist1['Title'];?></td>
-	   <td><?php echo $borrowedlist1['Author'];?></td>	    
+	
 		 <td><?php echo $borrowedlist1['DateBorrowed'];?></td>
 		  <td><?php echo $borrowedlist1['DateReturned'];?></td>
 		   <td><?php echo $borrowedlist1['DueDate'];?></td>

@@ -2,18 +2,19 @@
 <html>
 <head>
     <title>Books</title>
-    <style>
-        table,th,td
-        {
-            border:1px solid black;
-            padding:5px;
-        }
-    </style>
+ <link rel="stylesheet" type="text/css" href="../main.css"/>     
 </head>
 <body>
-
+<div id="content">
+<ul>
+<li><a href="../index.php">Home</a></li>
+<li><div class="line"></div></li>
+<li><a href="links.php">Admin Control panel</a></li>
+<li><div class="line"></div></li>
+<li><a href="bookstatistics.php">Statistics</a></li>
+</ul></br>
 <?php
-include 'db.inc.php';
+include '../db.inc.php';
 $username = $_COOKIE['mycookie'];
 echo "Welcome, $username";
 
@@ -41,7 +42,7 @@ catch (PDOException $e)
         <TH>PublishedDate</TH>
         <TH>Publisher</TH>
         <TH>KeyWords</TH>
-        <TH>Delete Button</TH>
+        <TH>copyCount</TH>
     </TR>
     <?php foreach($result as $booklist):?>
         <tr>
@@ -51,16 +52,16 @@ catch (PDOException $e)
             <td><?php echo $booklist['PublishedDate'];?></td>
             <td><?php echo $booklist['Publisher'];?></td>
             <td><?php echo $booklist['KeyWords'];?></td>
-
-            <td>
-                <form action="DeleteABook.php" method="post">
-                    <input type="hidden" name = "bookid" value ="<?php echo $booklist['BookID'];?>">
-                    <input type="submit" value="Delete">
-                </form>
-            </td>
+			<td><?php echo $booklist['copyCount'];?></td>
         </tr>
     <?php endforeach;?>
 </table>
-</body>
-<b><li><a href="links.php">Go back to the Admins Page</a></li></b>
+</div>
+
+<div id="footer">
+            <p class="copyright">
+                &copy; <?php echo date("Y"); ?> Ourlibrary.com
+            </p>
+        </div>
+		</body>
 </html>

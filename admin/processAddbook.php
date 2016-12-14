@@ -46,8 +46,7 @@ if ($ISBN != $row[0]) {
 
     $book->execute();
 
-echo $category;
-	//addBookCopy($ISBN, $category, $copyCount);
+
 	Switch($category){
 		  case 'Computer':
 			$ShelfNumber = 1001;
@@ -65,7 +64,7 @@ echo $category;
 			$ShelfNumber = 1004;
 		     break;
 	  }
-echo $ShelfNumber;
+
 
   for ($i = 0; $i < $copyCount; $i++) {
 
@@ -85,7 +84,7 @@ echo $ShelfNumber;
   }
    catch (PDOException $e) {
     $error_message = 'insert bookcopy Error1 : ' . $e->getMessage();
-    include 'error.html.php';
+    include '../messagedispaly/outputMessage.php';
     exit();
   }
 
@@ -154,7 +153,7 @@ Switch($category){
 }
   catch (PDOException $e) {
     $error_message = 'insert bookcopy Error2 : ' . $e->getMessage();
-    include 'error.html.php';
+    include '../messagedispaly/outputMessage.php';
     exit();
   }
 

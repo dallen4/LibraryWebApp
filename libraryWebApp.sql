@@ -113,6 +113,14 @@ UPDATE bookcopy SET BStatusID=1 WHERE BookID =old.bookid;
 END**
 DELIMITER ;
 
+DELIMITER **
+CREATE TRIGGER tri_sub
+AFTER DELETE ON bookcopy
+FOR EACH ROW BEGIN
+UPDATE book SET copyCount=copyCount-1 WHERE ISBN =old.ISBN;
+END**
+DELIMITER ;
+
 
 -- Populate tables
 INSERT INTO Book(`ISBN`,`Title`,`Author`,`PublishedDate`,`Publisher`, `KeyWords`,`copyCount`) VALUES ('9780321884497','Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)','Michael J. Hernandez','2013-02-01' ,'Addison-Wesley Professional', 'Database',3);

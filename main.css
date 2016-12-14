@@ -4,8 +4,6 @@ body {
     background-color: rgb(203, 238, 156);
 	background-image: url(apic1973x.jpg);
 	background-repeat: repeat-x;
-
-
     font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
@@ -92,7 +90,7 @@ hr {
 
 /* the styles for the div tags that divide the page into sections */
 #content {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     padding: 20px 20px 80px 20px;
     background: white;
@@ -104,7 +102,7 @@ hr {
 
  #mstatus{
 
-    width: 3em;
+    width: 5em;
 	margin-bottom: .5em;
 }
 
@@ -138,32 +136,7 @@ hr {
     padding: .5em 2em;
 }
 
-#sidebar {
-    float: left;
-    width: 150px;
-}
-#sidebar h2 {
-    padding: 1em 0 .25em;
-}
-#sidebar ul {
-    list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
-}
-#sidebar li {
-    margin: 0;
-    padding-bottom: .25em;
-}
-#left_column {
-    float: left;
-    width: 150px;
-    padding-left: .5em;
-}
-#right_column {
-    float: left;
-    width: 300px;
-    padding-left: 1em;
-}
+
 #footer {
     clear: both;
     margin-top: 1em;
@@ -178,12 +151,6 @@ hr {
 /********************************************************************
 * Styles for classes
 ********************************************************************/
-.right {
-    text-align: right;
-}
-.left {
-    text-align: left;
-}
 .error {
      color: red;
     font-weight: bold;
@@ -208,47 +175,4 @@ hr {
     background: gray;
 	text-align:center;
 	line-height:30px;
-}
-/********************************************************************
-* Other styles for the Product Manager application
-********************************************************************/
-#add_edit_product_form {
-    margin: .5em 0 2em;
-}
-#add_edit_product_form label {
-    width: 8em;
-    padding-right: 1em;
-    padding-bottom: .5em;
-    text-align: right;
-    float: left;
-}
-#add_edit_product_form input {
-    float: left;
-}
-#add_edit_product_form input[text] {
-    width: 25em;
-}
-#add_edit_product_form textarea {
-    width: 25em;
-}
-#edit_button_form {
-    float: left;
-    margin-right: .5em;
-}
-#product_image_column {
-    width: 8em;
-    text-align: center;
-}
-#category_table form {
-    margin: 0;
-}
-#category_table td {
-    margin: 0;
-    padding: 0 .5em;
-}
-#add_category_form  form {
-    margin: 0;
-}
-#add_category_form input {
-    margin-right: .5em;
 }
